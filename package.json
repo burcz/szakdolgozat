@@ -1,0 +1,23 @@
+{
+  "name": "szakdolgozat",
+  "version": "1.0.0",
+  "description": "<!-- toc -->",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "toc": "node_modules/.bin/markdown-toc -i README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burcz/szakdolgozat.git"
+  },
+  "author": "burcz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burcz/szakdolgozat/issues"
+  },
+  "homepage": "https://github.com/burcz/szakdolgozat#readme",
+  "dependencies": {
+    "markdown-toc": "^1.2.0"
+  }
+}
