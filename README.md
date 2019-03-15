@@ -1,0 +1,1 @@
+# Webes alkalmazás futtatása, monitorozása és skálázása felhőben
