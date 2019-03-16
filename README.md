@@ -16,9 +16,10 @@
   * [2. Különbségek a felhő alapú és a nem felhő alapú szerverüzemeltetés között](#2-kulonbsegek-a-felho-alapu-es-a-nem-felho-alapu-szerveruzemeltetes-kozott)
     + [a. Felelősségi körök](#a-felelossegi-korok)
     + [b. Időgazdálkodás](#b-idogazdalkodas)
+    + [c. Biztonság](#c-biztonsag)
   * [3. A felhőben megtalálható komponensek bemutatása](#3-a-felhoben-megtalalhato-komponensek-bemutatasa)
     + [a. Néhány szó a Google Cloudról](#a-nehany-szo-a-google-cloudrol)
-    + [b. TODO: valamilyen csoportosítás kitalálása](#b-todo-valamilyen-csoportositas-kitalalasa)
+    + [b. TODO: valamilyen csoportosítás kitalálása a komponensekre](#b-todo-valamilyen-csoportositas-kitalalasa-a-komponensekre)
   * [4. Az egyéb, kapcsolódó technológiák bemutatása](#4-az-egyeb-kapcsolodo-technologiak-bemutatasa)
     + [a. github](#a-github)
     + [b. Stackdriver](#b-stackdriver)
@@ -32,15 +33,22 @@
     + [d. A kapcsolatok ábrázolása](#d-a-kapcsolatok-abrazolasa)
   * [6. A rendszer kiépítése és automatizálása](#6-a-rendszer-kiepitese-es-automatizalasa)
     + [a. TODO: komponensek es leiro file-jaik (yml)](#a-todo-komponensek-es-leiro-file-jaik-yml)
-    + [b. Webapplikáció build trigger és leíró](#b-webapplikacio-build-trigger-es-leiro)
-    + [c. Egy automatizált folyamat, ami összerakja a rendszert](#c-egy-automatizalt-folyamat-ami-osszerakja-a-rendszert)
-  * [7. A tesztelési folyamat ismertetése](#7-a-tesztelesi-folyamat-ismertetese)
-  * [8. A monitorozási folyamat ismertetése](#8-a-monitorozasi-folyamat-ismertetese)
+    + [b. Webes alkalmazás build trigger és leíró file](#b-webes-alkalmazas-build-trigger-es-leiro-file)
+    + [c. A rendszert felállító, automatizált folyamat](#c-a-rendszert-felallito-automatizalt-folyamat)
+  * [7. Monitorozás](#7-monitorozas)
     + [a. Stackdriver metrikák](#a-stackdriver-metrikak)
+  * [8. Tesztelés](#8-teszteles)
+    + [a. A rendszer tesztelése](#a-a-rendszer-tesztelese)
+    + [b. Az alkmalmazás tesztelése](#b-az-alkmalmazas-tesztelese)
+    + [c. A monitoring tesztelése](#c-a-monitoring-tesztelese)
   * [9. Katasztrófakezelés](#9-katasztrofakezeles)
+    + [a. Alertrendszer](#a-alertrendszer)
 - [III. Befejezés](#iii-befejezes)
   * [1. Záró gondolatok](#1-zaro-gondolatok)
+    + [a. Üzemeltetés](#a-uzemeltetes)
+    + [b. Költségek](#b-koltsegek)
   * [2. Saját vélemény](#2-sajat-velemeny)
+    + [a. Változó terhelés kezelése](#a-valtozo-terheles-kezelese)
   * [3. További fejlesztési lehetőségek ismertetése](#3-tovabbi-fejlesztesi-lehetosegek-ismertetese)
     + [a. Adatbázis](#a-adatbazis)
     + [b. Multirégió](#b-multiregio)
@@ -63,9 +71,10 @@
 ### 2. Különbségek a felhő alapú és a nem felhő alapú szerverüzemeltetés között
 #### a. Felelősségi körök
 #### b. Időgazdálkodás
+#### c. Biztonság
 ### 3. A felhőben megtalálható komponensek bemutatása
 #### a. Néhány szó a Google Cloudról
-#### b. TODO: valamilyen csoportosítás kitalálása
+#### b. TODO: valamilyen csoportosítás kitalálása a komponensekre
 ### 4. Az egyéb, kapcsolódó technológiák bemutatása
 #### a. github
 #### b. Stackdriver
@@ -80,15 +89,23 @@ docker, VSCode, gcloud, kubectl
 #### d. A kapcsolatok ábrázolása
 ### 6. A rendszer kiépítése és automatizálása
 #### a. TODO: komponensek es leiro file-jaik (yml)
-#### b. Webapplikáció build trigger és leíró
-#### c. Egy automatizált folyamat, ami összerakja a rendszert
-### 7. A tesztelési folyamat ismertetése
-### 8. A monitorozási folyamat ismertetése
+#### b. Webes alkalmazás build trigger és leíró file
+#### c. A rendszert felállító, automatizált folyamat
+### 7. Monitorozás
 #### a. Stackdriver metrikák
+### 8. Tesztelés
+#### a. A rendszer tesztelése
+#### b. Az alkmalmazás tesztelése
+#### c. A monitoring tesztelése
 ### 9. Katasztrófakezelés
+#### a. Alertrendszer
 ## III. Befejezés
 ### 1. Záró gondolatok
+#### a. Üzemeltetés
+#### b. Költségek
 ### 2. Saját vélemény
+#### a. Változó terhelés kezelése
+Fizetős tárhelyeknél mindig probléma van, előre jelzett többletforgalom esetén is (LifeT!lt)
 ### 3. További fejlesztési lehetőségek ismertetése
 #### a. Adatbázis
 #### b. Multirégió
