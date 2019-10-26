@@ -18,7 +18,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run toc && git add README.md"
+      "pre-commit": "npm run toc && git add README.md && lint-staged"
     }
   },
   "repository": {
