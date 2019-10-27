@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
-import routes from './routes';
+import { userRoutes } from './routes';
 import connect from './connect';
 const app = express();
 const port = 8080;
@@ -24,6 +24,6 @@ app.get('/', (req: express.Request, res: express.Response) =>
 app.listen(port, () =>
 	console.log(`Application started successfully on port ${ port }.`)
 );
-const db = 'mongodb://mongo:27017/test';
+const db = `mongodb://${ process.env.DB_HOST }:27017/test`;
 connect({ db });
-routes({ app });
+userRoutes({ app });

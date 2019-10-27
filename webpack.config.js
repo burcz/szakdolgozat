@@ -2,7 +2,8 @@ module.exports = {
     mode: "development",
 
     entry: {
-        main: "./src/views/main.tsx",
+		main: "./src/views/main.tsx",
+		// users: "./src/views/users.tsx"
     },
 
     output: {

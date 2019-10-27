@@ -19,6 +19,12 @@ async function createUser({
 	return user;
 }
 
+async function getUsers() {
+	const users = await UserModel.find();
+	return users;
+}
+
 export {
-	createUser
+	createUser,
+	getUsers
 };

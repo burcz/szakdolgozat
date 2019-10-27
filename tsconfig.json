@@ -4,7 +4,7 @@
 		"./src/**/*",
 	],
 	"exclude": [
-		"node_modules",
+		"./node_modules",
 		"./gulpfile.js",
 		"./src/views"
 	],
@@ -29,7 +29,8 @@
 		"allowSyntheticDefaultImports": true,
 		"resolveJsonModule": true,
 		"allowJs": true,
-		"checkJs": true
+		"checkJs": true,
+		"jsx": "react"
 	},
 	"typeAcquisition": {
 		"enable": true

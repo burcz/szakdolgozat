@@ -1,4 +1,4 @@
-.App {
+/* .App {
     margin: 30px auto;
     max-width: 320px;
     padding: 2em;
@@ -6,4 +6,8 @@
     border-radius: 1em;
 
     text-align: center;
+} */
+
+.table {
+   margin: auto;
 }
