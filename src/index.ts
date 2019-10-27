@@ -15,6 +15,6 @@ app.get('/', (req: express.Request, res: express.Response) =>
 app.listen(port, () =>
 	console.log(`Application started successfully on port ${ port }.`)
 );
-const db = 'mongodb://localhost:27017/test';
+const db = 'mongodb://mongo:27017/test';
 connect({ db });
 routes({ app });

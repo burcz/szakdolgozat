@@ -7,3 +7,13 @@ services:
     image: mongo
     volumes:
       - /Users/szabom/mongo/db:/data/db
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo

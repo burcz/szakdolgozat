@@ -8,7 +8,8 @@
     "toc": "node_modules/.bin/markdown-toc -i README.md",
     "build": "node_modules/.bin/gulp buildTs",
     "lint": "./node_modules/.bin/eslint . --ext .ts",
-    "precommit": "lint-staged"
+	"precommit": "lint-staged",
+	"start": "docker-compose up --build"
   },
   "lint-staged": {
     "*.ts": [
