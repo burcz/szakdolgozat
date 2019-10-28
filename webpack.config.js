@@ -2,8 +2,8 @@ module.exports = {
     mode: "development",
 
     entry: {
-		main: "./src/views/main.tsx",
-		// users: "./src/views/users.tsx"
+		index: "./src/views/index.tsx",
+		users: "./src/views/users/users.tsx"
     },
 
     output: {
