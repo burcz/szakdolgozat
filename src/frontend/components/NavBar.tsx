@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import * as React from "react";
 import {
 	Collapse,
 	Navbar,
@@ -13,7 +13,7 @@ import {
 	DropdownItem
 } from 'reactstrap';
 
-class NavBar extends Component {
+class NavBar extends React.Component {
 	state: {
 		isOpen: boolean;
 	}
@@ -26,7 +26,7 @@ class NavBar extends Component {
 
 	toggle() {
 		let setIsOpen;
-		[this.state.isOpen, setIsOpen] = useState(false);
+		[this.state.isOpen, setIsOpen] = React.useState(false);
 		return setIsOpen(this.state.isOpen);
 	}
 

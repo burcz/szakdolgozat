@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { IUser } from '../../models/index';
+import * as React from 'react';
+import { IUser } from '../../api/models';
 
-class UsersTable extends Component {
+class UsersTable extends React.Component {
 	state: {
 		users: IUser[];
 		isLoading: boolean;

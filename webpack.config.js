@@ -2,8 +2,7 @@ module.exports = {
     mode: "development",
 
     entry: {
-		index: "./src/views/index.tsx",
-		users: "./src/views/users/users.tsx"
+		index: "./src/frontend/pages/index.tsx",
     },
 
     output: {

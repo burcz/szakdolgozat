@@ -1,8 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
-import { userRoutes } from './routes';
-import connect from './connect';
 const app = express();
 const port = 8080;
 
@@ -14,16 +12,13 @@ app.set("view engine", "ejs");
 app.set("views", "public");
 
 // Static files configuration
-app.use("/assets", express.static(path.join(__dirname, "views")));
-app.use('/favicon.ico', express.static(path.join(__dirname, '../public/favicon.ico')));
+app.use("/assets", express.static(path.join(__dirname, "../views")));
+app.use('/favicon.ico', express.static(path.join(__dirname, '../../public/favicon.ico')));
 
 app.get('/', (req: express.Request, res: express.Response) =>
 	res.render("index")
 );
 
 app.listen(port, () =>
-	console.log(`Application started successfully on port ${ port }.`)
+	console.log(`Application started successfully on port ${port}.`)
 );
-const db = `mongodb://${ process.env.DB_HOST }:27017/test`;
-connect({ db });
-userRoutes({ app });
