@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/burcz/szakdolgozat#readme",
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "@types/express": "^4.17.1",
     "@types/mocha": "^5.2.7",
     "@types/mongoose": "^5.5.23",
