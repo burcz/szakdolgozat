@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Route, Router } from "react-router-dom";
 
-import Nav from "../components/Nav";
+import Nav from "../components/NavBar";
 import Pages from "../routes/Pages";
 import { checkAuthentication } from "../actions/current";
 import { ICurrent } from "../types";

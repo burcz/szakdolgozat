@@ -31,22 +31,22 @@ function unauthenticate(): IUnauthenticate {
 export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
 export function logIn() {
-	return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
-		await window.localStorage.setItem("authenticated", "true");
+	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+		window.localStorage.setItem("authenticated", "true");
 		dispatch(authenticate());
 	};
 }
 
 export function logOut() {
-	return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
-		await window.localStorage.setItem("authenticated", "false");
+	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+		window.localStorage.setItem("authenticated", "false");
 		dispatch(unauthenticate());
 	};
 }
 
 export function checkAuthentication() {
-	return async (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
-		const auth = await window.localStorage.getItem("authenticated");
+	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
+		const auth = window.localStorage.getItem("authenticated");
 		const formattedAuth = typeof auth === "string" ?
 			JSON.parse(auth) :
 			null;

@@ -9,6 +9,7 @@ import currentReducer from '../reducers/current';
 import { ICurrent } from '../types';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/style.css';
 
 
 const store = createStore<ICurrent, any, any, any>(
