@@ -1,16 +1,10 @@
 import * as React from "react";
 import {
-	Collapse,
 	Navbar,
-	NavbarToggler,
 	NavbarBrand,
 	Nav,
 	NavItem,
-	// NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem
+	// NavLink
 } from 'reactstrap';
 import { connect } from "react-redux";
 
@@ -37,11 +31,18 @@ const NavBar = ({ isAuthenticated, uuid }: IProps) => {
 		</NavItem>
 	);
 	const mainLinks = isAuthenticated ? (
-		<NavItem>
-			<NavLink to="/home">
-				Home
-			</NavLink>
-		</NavItem>
+		<>
+			<NavItem>
+				<NavLink to="/home">
+					Home
+				</NavLink>
+			</NavItem>
+			<NavItem>
+				<NavLink to="/users">
+					Users
+				</NavLink>
+			</NavItem>
+		</>
 	) : (
 		<>
 			<NavItem>

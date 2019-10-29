@@ -12,8 +12,8 @@ app.set("view engine", "ejs");
 app.set("views", "public");
 
 // Static files configuration
-app.use("/assets", express.static(path.join(__dirname, "../views")));
-app.use('/favicon.ico', express.static(path.join(__dirname, '../../public/favicon.ico')));
+app.use("/assets", express.static(path.join(__dirname, "./views")));
+app.use('/favicon.ico', express.static(path.join(__dirname, '../public/favicon.ico')));
 
 app.get('/', (req: express.Request, res: express.Response) =>
 	res.render("index")

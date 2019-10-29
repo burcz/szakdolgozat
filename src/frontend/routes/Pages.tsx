@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import Landing from "../pages/Landing";
 import LogIn from "../pages/users/LogIn";
 import LogOut from "../pages/users/LogOut";
+import Users from '../pages/users/Main';
 import NotFound from "../pages/NotFound";
 import Terms from "../pages/Terms";
 
@@ -24,6 +25,7 @@ const Pages = () => {
 			<LoggedOutRoute path="/log-in" exact={true} component={LogIn} />
 			<LoggedInRoute path="/log-out" exact={true} component={LogOut} />
 			<LoggedInRoute path="/home" exact={true} component={Home} />
+			<LoggedInRoute path="/users" exact={true} component={Users} />
 			<Route path="/terms" exact={true} component={Terms} />
 			<Route component={NotFound} />
 		</Switch>

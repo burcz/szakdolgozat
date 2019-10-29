@@ -11,11 +11,23 @@ services:
     container_name: api
     build:
       context: .
+      target: api
       dockerfile: Dockerfile
-    image: api
+    image: api:latest
     ports:
-      - 8080:8080
+      - 3000:3000
     depends_on:
       - mongo
     environment:
       - DB_HOST=mongo
+  UI:
+    container_name: ui
+    build:
+        context: .
+        target: frontend
+        dockerfile: Dockerfile
+    image: ui:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - api

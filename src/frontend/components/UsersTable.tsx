@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { IUser } from '../../api/models';
+
+interface IUser {
+	firstName: string;
+	lastName: string;
+	email: string;
+}
 
 class UsersTable extends React.Component {
 	state: {
