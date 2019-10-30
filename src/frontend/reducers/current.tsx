@@ -15,7 +15,7 @@ export default function currentReducer(
 ): ICurrent {
 	switch (action.type) {
 		case AUTHENTICATE:
-			return { ...state, uuid: "placeholder-uuid", isAuthenticated: true };
+			return { ...state, uuid: action.data, isAuthenticated: true };
 		case UNAUTHENTICATE:
 			return { uuid: null, isAuthenticated: false }
 	}

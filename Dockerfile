@@ -4,6 +4,7 @@ WORKDIR /usr/app
 
 COPY package.json .
 COPY tsconfig.json .
+COPY src/config.json src/
 
 RUN npm install
 
@@ -18,13 +19,13 @@ RUN node_modules/.bin/tsc -p tsconfig.json
 RUN node_modules/.bin/webpack
 
 EXPOSE 8080
-CMD [ "node", "dist/index.js" ]
+CMD [ "node", "dist/frontend/index.js" ]
 
 
 # === backend ===
 FROM base as api
-ADD src/api /usr/app/src
-RUN node_modules/.bin/tsc -p tsconfig.json
+ADD src/api /usr/app/src/api
+RUN node_modules/.bin/tsc -p tsconfig.json --outDir dist/api
 
 EXPOSE 3000
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/api/server.js"]

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Route, Router } from "react-router-dom";
+import { bindActionCreators } from 'redux';
 
 import Nav from "../components/NavBar";
 import Pages from "../routes/Pages";
@@ -8,19 +9,21 @@ import { checkAuthentication } from "../actions/current";
 import { ICurrent } from "../types";
 import history from "../history";
 
+import * as config from '../../config.json';
+
+
+
 interface IProps {
-	checkAuthenticationConnect: () => void;
+	checkAuthentication: () => void;
 	isAuthenticated: boolean | null;
 }
 
-
-
 const App = ({
-	checkAuthenticationConnect,
+	checkAuthentication,
 	isAuthenticated
 }: IProps) => {
 	React.useEffect(() => {
-		checkAuthenticationConnect();
+		checkAuthentication();
 	}, []);
 
 	const app = isAuthenticated !== null ? (
@@ -37,13 +40,21 @@ const App = ({
 	);
 }
 
-const mapStateToProps = (state: ICurrent) => ({
-	isAuthenticated: state.isAuthenticated
-});
+const mapStateToProps = (state) => (
+	(config.reducer) ? 
+	{ isAuthenticated: state.currentReducer.isAuthenticated } :
+	{ isAuthenticated: state.isAuthenticated }
+);
 
-const mapDispatchToProps = {
-	checkAuthenticationConnect: checkAuthentication
-};
+// const mapDispatchToProps = {
+// 	checkAuthenticationConnect: checkAuthentication
+// };
+
+function mapDispatchToProps(dispatch) {
+	return {
+		checkAuthentication: bindActionCreators(checkAuthentication, dispatch)
+	};
+}
 
 export default connect(
 	mapStateToProps,

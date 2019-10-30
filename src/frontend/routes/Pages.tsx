@@ -25,7 +25,7 @@ const Pages = () => {
 			<LoggedOutRoute path="/log-in" exact={true} component={LogIn} />
 			<LoggedInRoute path="/log-out" exact={true} component={LogOut} />
 			<LoggedInRoute path="/home" exact={true} component={Home} />
-			<LoggedInRoute path="/users" exact={true} component={Users} />
+			<Route path="/users" exact={true} component={Users} />
 			<Route path="/terms" exact={true} component={Terms} />
 			<Route component={NotFound} />
 		</Switch>

@@ -5,8 +5,7 @@
 	],
 	"exclude": [
 		"./node_modules",
-		"./gulpfile.js",
-		"/src/frontend/**/*"
+		"./gulpfile.js"
 	],
 	"compilerOptions": {
 		"target": "esnext",

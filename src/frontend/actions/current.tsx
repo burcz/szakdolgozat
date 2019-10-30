@@ -10,11 +10,13 @@ import { ICurrent } from "../types";
 
 export interface IAuthenticate {
 	type: AUTHENTICATE;
+	data: string;
 }
 
 function authenticate(): IAuthenticate {
 	return {
 		type: AUTHENTICATE,
+		data: 'fele'
 	};
 }
 
