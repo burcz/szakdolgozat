@@ -1,4 +1,4 @@
-import { V1StatefulSet, V1Service, V1ClusterRole, V1ServiceAccount, V1ClusterRoleBinding, V1Namespace } from "@kubernetes/client-node";
+import { V1StatefulSet, V1Service, V1ClusterRole, V1ServiceAccount, V1ClusterRoleBinding, V1Namespace, V1DaemonSet } from "@kubernetes/client-node";
 
 const namespace: V1Namespace = {
 	metadata: {
@@ -19,13 +19,14 @@ const service: V1Service  = {
 				port: 27017
 			}
 		],
+		clusterIP: 'None',
 		selector: {
 			role: 'mongo'
 		}
 	}
 };
 
-const statefulset: V1StatefulSet = {
+const statefulSet: V1StatefulSet = {
 	metadata: {
 		name: "mongo"
 	},
@@ -45,11 +46,15 @@ const statefulset: V1StatefulSet = {
 			},
 			spec: {
 				terminationGracePeriodSeconds: 10,
+				nodeSelector: {
+					'cloud.google.com/gke-nodepool': "mongo"
+				},
 				containers: [
 					{
 						name: 'mongod',
 						image: 'mongo:3.6',
 						command: [
+							'mongod',
 							'--replSet',
 							'rs0',
 							'--bind-ip',
@@ -111,7 +116,7 @@ const statefulset: V1StatefulSet = {
 
 const clusterRole: V1ClusterRole = {
 	metadata: {
-		name: 'mongo'
+		name: 'default'
 	},
 	rules: [
 		{
@@ -134,33 +139,82 @@ const clusterRole: V1ClusterRole = {
 
 const serviceAccount: V1ServiceAccount = {
 	metadata: {
-		name: 'mongo'
+		name: 'default'
 	}
 };
 
 const clusterRoleBinding: V1ClusterRoleBinding = {
 	metadata: {
-		name: 'system:serviceaccount:db:mongo'
+		name: 'system:serviceaccount:db:default'
 	},
 	roleRef: {
 		apiGroup: 'rbac.authorization.k8s.io',
 		kind: 'ClusterRole',
-		name: 'mongo'
+		name: 'default'
 	},
 	subjects: [
 		{
 			kind: 'ServiceAccount',
-			name: 'mongo',
+			name: 'default',
 			namespace: 'db'
 		}
 	]
 };
 
+const startupScript = `
+#! /bin/bash
+set -o errexit
+set -o pipefail
+set -o nounset
+
+echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled
+echo 'never' > /sys/kernel/mm/transparent_hugepage/defrag
+`;
+
+const daemonSet: V1DaemonSet = {
+	metadata: {
+		name: 'startup-script'
+	},
+	spec: {
+		selector: {
+			matchLabels: {
+				role: 'startup-script'
+			}
+		},
+		template: {
+			metadata: {
+				labels: {
+					role: 'startup-script'
+				}
+			},
+			spec: {
+				hostPID: true,
+				containers: [
+					{
+						name: 'startup-script',
+						image: 'gcr.io/google-containers/startup-script:v1',
+						securityContext: {
+							privileged: true
+						},
+						env: [
+							{
+								name: 'STARTUP_SCRIPT',
+								value: startupScript
+							}
+						]
+					}
+				]
+			}
+		}
+	}
+};
+
 export {
 	namespace,
 	service,
-	statefulset,
+	statefulSet,
 	clusterRole,
 	serviceAccount,
-	clusterRoleBinding
+	clusterRoleBinding,
+	daemonSet
 };

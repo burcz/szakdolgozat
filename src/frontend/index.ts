@@ -20,5 +20,5 @@ app.get('/', (req: express.Request, res: express.Response) =>
 );
 
 app.listen(port, () =>
-	console.log(`Application started successfully on port ${port}.`)
+	console.log(`Application started successfully on port ${ port }.`)
 );

@@ -5,7 +5,7 @@
 		"googleApplicationCredentials": "/Users/szabom/Tools/saas/gcp/cluster-builder-test/service-accounts/masteradmin.json",
 		"location": "europe-west3-a",
 		"cluster": {
-			"name": "test",
+			"name": "karvaly",
 			"masterAuth": {
 				"username": "mester",
 				"password": "boller_turban_kalapfele13!",
@@ -16,6 +16,11 @@
 			"nodePools": [
 				{
 					"name": "api",
+					"metadata": {
+						"labels": {
+							"pool": "mongo"
+						}
+					},
 					"config": {
 						"machineType": "g1-small",
 						"diskSizeGb": 15,

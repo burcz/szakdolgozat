@@ -3,6 +3,8 @@ import KubernetesClient from './clients/k8s-clients/KubernetesClient';
 
 import * as config from '../config.json';
 import * as mongoTemplates from './templates/mongoTemplates';
+import * as mgobTemplates from './templates/mgobTemplates';
+import * as storageTemplate from './templates/storageTemplate';
 
 async function main() {
 	try {
@@ -19,20 +21,35 @@ async function main() {
 		const k8sClient = new KubernetesClient();
 		await k8sClient.init();
 
-		const namespace = await k8sClient.createNameSpace(mongoTemplates.namespace);
-		const service = await k8sClient.createService(mongoTemplates.namespace, mongoTemplates.service);
-		const statefulset = await k8sClient.createStatefulset(mongoTemplates.namespace, mongoTemplates.statefulset);
-		const clusterRole = await k8sClient.createClusterRole(mongoTemplates.clusterRole);
-		const serviceAccount = await k8sClient.createServiceAccount(mongoTemplates.namespace, mongoTemplates.serviceAccount);
-		const clusterRoleBinding = await k8sClient.createClusterRoleBinding(mongoTemplates.clusterRoleBinding);
+		const ssdStorage = await k8sClient.createStorage(storageTemplate.ssd);
+		const hddStorage = await k8sClient.createStorage(storageTemplate.hdd);
+
+		const mongoNamespace = await k8sClient.createNameSpace(mongoTemplates.namespace);
+		const mongoService = await k8sClient.createService(mongoTemplates.namespace, mongoTemplates.service);
+		const mongoStatefulset = await k8sClient.createStatefulset(mongoTemplates.namespace, mongoTemplates.statefulSet);
+		const mongoClusterRole = await k8sClient.createClusterRole(mongoTemplates.clusterRole);
+		const mongoServiceAccount = await k8sClient.createServiceAccount(mongoTemplates.namespace, mongoTemplates.serviceAccount);
+		const mongoClusterRoleBinding = await k8sClient.createClusterRoleBinding(mongoTemplates.clusterRoleBinding);
+		const mongoDaemonSet = await k8sClient.createDaemonSet(mongoTemplates.namespace, mongoTemplates.daemonSet);
+
+		const mgobConfigMap = await k8sClient.createConfigMap(mongoTemplates.namespace, mgobTemplates.configMap);
+		const mgobService = await k8sClient.createService(mongoTemplates.namespace, mgobTemplates.service);
+		const mgobStatefulSet = await k8sClient.createStatefulset(mongoTemplates.namespace, mgobTemplates.statefulSet);
+
 
 		console.log(JSON.stringify([
-			namespace,
-			service,
-			statefulset,
-			clusterRole,
-			serviceAccount,
-			clusterRoleBinding
+			mongoNamespace,
+			mongoService,
+			mongoStatefulset,
+			mongoClusterRole,
+			mongoServiceAccount,
+			mongoClusterRoleBinding,
+			mongoDaemonSet,
+			mgobConfigMap,
+			mgobService,
+			mgobStatefulSet,
+			ssdStorage,
+			hddStorage
 		]));
 		console.log('done');
 
