@@ -57,7 +57,7 @@ const statefulSet: V1StatefulSet = {
 							'mongod',
 							'--replSet',
 							'rs0',
-							'--bind-ip',
+							'--bind_ip',
 							'0.0.0.0',
 							'--smallfiles',
 							'--noprealloc'

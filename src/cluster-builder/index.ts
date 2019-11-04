@@ -37,7 +37,7 @@ async function main() {
 		const mgobStatefulSet = await k8sClient.createStatefulset(mongoTemplates.namespace, mgobTemplates.statefulSet);
 
 
-		console.log(JSON.stringify([
+		console.log([
 			mongoNamespace,
 			mongoService,
 			mongoStatefulset,
@@ -50,7 +50,9 @@ async function main() {
 			mgobStatefulSet,
 			ssdStorage,
 			hddStorage
-		]));
+		].map(item => {
+			return JSON.stringify(item, null, 2);
+		}).join(",\n"));
 		console.log('done');
 
 	}

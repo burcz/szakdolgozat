@@ -5,7 +5,7 @@
 		"googleApplicationCredentials": "/Users/szabom/Tools/saas/gcp/cluster-builder-test/service-accounts/masteradmin.json",
 		"location": "europe-west3-a",
 		"cluster": {
-			"name": "karvaly",
+			"name": "test",
 			"masterAuth": {
 				"username": "mester",
 				"password": "boller_turban_kalapfele13!",

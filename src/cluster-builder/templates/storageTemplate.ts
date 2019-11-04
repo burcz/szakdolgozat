@@ -12,7 +12,7 @@ const ssd: V1StorageClass = {
 
 const hdd: V1StorageClass = {
 	metadata: {
-		name: 'ssd'
+		name: 'hdd'
 	},
 	provisioner: 'kubernetes.io/gce-pd',
 	parameters: {
