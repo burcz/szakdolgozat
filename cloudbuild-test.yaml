@@ -1,0 +1,34 @@
+---
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    id: 'buildApi'
+    args:
+      - "build"
+      - "--target"
+      - "api"
+      - "."
+      - "-t"
+      - "eu.gcr.io/$PROJECT_ID/api:$_TAG_NAME"
+  - name: "gcr.io/cloud-builders/docker"
+    id: 'buildFrontend'
+    args:
+      - "build"
+      - "--target"
+      - "frontend"
+      - "."
+      - "-t"
+      - "eu.gcr.io/$PROJECT_ID/frontend:$_TAG_NAME"
+  - name: "gcr.io/cloud-builders/docker"
+    id: 'pushApi'
+    args:
+      - "push"
+      - "eu.gcr.io/$PROJECT_ID/api:$_TAG_NAME"
+    waitFor: ['buildApi']
+  - name: "gcr.io/cloud-builders/docker"
+    id: 'pushFrontend'
+    args:
+      - "push"
+      - "eu.gcr.io/$PROJECT_ID/frontend:$_TAG_NAME"
+    waitFor: ['buildFrontend']
+substitutions:
+  $_TAG_NAME: test
