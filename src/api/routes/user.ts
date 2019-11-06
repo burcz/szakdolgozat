@@ -11,4 +11,11 @@ export default ({ app }: TRoutesInput) => {
 
 		return res.send({ user });
 	});
+
+	app.get('/api/users', async (req, res) => {
+		const users = await userController.getUsers();
+		return res.send({ users });
+	});
+
+	app.get('/users', (req, res) => res.render("users"));
 };

@@ -1,0 +1,19 @@
+/* .App {
+    margin: 30px auto;
+    max-width: 320px;
+    padding: 2em;
+    border: 1px solid silver;
+    border-radius: 1em;
+
+    text-align: center;
+} */
+
+.table {
+   margin: auto;
+}
+
+.navbar-expand-md .navbar-nav .nav-item {
+	color: rgba(0,0,0,.5);
+    padding-right: .5rem;
+    padding-left: .5rem;
+}

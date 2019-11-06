@@ -1,10 +1,10 @@
 {
 	"include": [
-		"./src/types/**/*",
+		"src/api/types/**/*",
 		"./src/**/*",
 	],
 	"exclude": [
-		"node_modules",
+		"./node_modules",
 		"./gulpfile.js"
 	],
 	"compilerOptions": {
@@ -23,12 +23,13 @@
 		"strictBindCallApply": true,
 		"noEmitOnError": true,
 		"strictNullChecks": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"sourceMap": true,
 		"allowSyntheticDefaultImports": true,
 		"resolveJsonModule": true,
 		"allowJs": true,
-		"checkJs": true
+		"checkJs": true,
+		"jsx": "react"
 	},
 	"typeAcquisition": {
 		"enable": true

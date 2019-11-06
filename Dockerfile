@@ -1,15 +1,31 @@
-FROM node:10.15-alpine
-# Create Directory for the Container
+FROM node:10.15-alpine as base
+
 WORKDIR /usr/app
-# Only copy the package.json file to work directory
+
 COPY package.json .
 COPY tsconfig.json .
-# Install all Packages
+COPY src/config.json src/
+
 RUN npm install
-# Copy all other source code to work directory
-ADD ./src /usr/app/src
-# TypeScript
+
+
+# === frontend ===
+FROM base as frontend
+COPY webpack.config.js .
+ADD src/frontend /usr/app/src/frontend
+ADD public /usr/app/public
+
 RUN node_modules/.bin/tsc -p tsconfig.json
-# Start
-CMD [ "node", "dist/index.js" ]
+RUN node_modules/.bin/webpack
+
 EXPOSE 8080
+CMD [ "node", "dist/frontend/index.js" ]
+
+
+# === backend ===
+FROM base as api
+ADD src/api /usr/app/src/api
+RUN node_modules/.bin/tsc -p tsconfig.json --outDir dist/api
+
+EXPOSE 3000
+CMD ["node", "dist/api/server.js"]

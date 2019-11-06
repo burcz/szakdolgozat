@@ -3,7 +3,7 @@ const ts = require('gulp-typescript');
 const sourcemaps = require('gulp-sourcemaps');
 const tsProject = ts.createProject('./tsconfig.json')
 
-const requiredDevDistFiles = ['src/config.json', 'package.json', 'tsconfig.json'];
+const requiredDevDistFiles = ['src/config.json', 'package.json'];
 const devDist = 'dist';
 
 function buildTs() {
