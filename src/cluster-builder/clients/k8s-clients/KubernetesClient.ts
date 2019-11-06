@@ -54,7 +54,7 @@ class KubernetesClient {
 	}
 
 	async createNameSpace(namespace: k8s.V1Namespace): Promise<k8s.V1Namespace> {
-		logger.info(`Creating namespace ${ this.getComponentName(namespace) }`);
+		logger.info(`Creating namespace [${ this.getComponentName(namespace) }]`);
 		const result = await this.handleConflict(
 			this.coreV1Api.createNamespace(namespace)
 		);
@@ -76,7 +76,7 @@ class KubernetesClient {
 	}
 
 	async createService(namespace: k8s.V1Namespace, service: k8s.V1Service): Promise<k8s.V1Service> {
-		logger.info(`Creating service ${ this.getComponentName(service) }`);
+		logger.info(`Creating service [${ this.getComponentName(service) }]`);
 		const namespaceName = this.getComponentName(namespace);
 		const result = await this.handleConflict(
 			this.coreV1Api.createNamespacedService(namespaceName, service)
@@ -85,7 +85,7 @@ class KubernetesClient {
 	}
 
 	async createStatefulset(namespace: k8s.V1Namespace, statefulSet: k8s.V1StatefulSet): Promise<k8s.V1StatefulSet> {
-		logger.info(`Creating statefulSet ${ this.getComponentName(statefulSet) }`);
+		logger.info(`Creating statefulSet [${ this.getComponentName(statefulSet) }]`);
 		const namespaceName = this.getComponentName(namespace);
 		const result = await this.handleConflict(
 			this.appsV1Api.createNamespacedStatefulSet(namespaceName, statefulSet)
@@ -94,7 +94,7 @@ class KubernetesClient {
 	}
 
 	async createClusterRole(clusterRole: k8s.V1ClusterRole): Promise<k8s.V1ClusterRole> {
-		logger.info(`Creating clusterRole ${ this.getComponentName(clusterRole) }`);
+		logger.info(`Creating clusterRole [${ this.getComponentName(clusterRole) }]`);
 		const result = await this.handleConflict(
 			this.rbacAuthorizationV1Api.createClusterRole(clusterRole)
 		);
@@ -102,7 +102,7 @@ class KubernetesClient {
 	}
 
 	async createServiceAccount(namespace: k8s.V1Namespace, serviceAccount: k8s.V1ServiceAccount): Promise<k8s.V1ServiceAccount> {
-		logger.info(`Creating serviceAccount ${ this.getComponentName(serviceAccount) }`);
+		logger.info(`Creating serviceAccount [${ this.getComponentName(serviceAccount) }]`);
 		const namespaceName = this.getComponentName(namespace);
 		const result = await this.handleConflict(
 			this.coreV1Api.createNamespacedServiceAccount(namespaceName, serviceAccount)
@@ -111,7 +111,7 @@ class KubernetesClient {
 	}
 
 	async createClusterRoleBinding(clusterRoleBinding: k8s.V1ClusterRoleBinding): Promise<k8s.V1ClusterRoleBinding> {
-		logger.info(`Creating clusterRoleBinding ${ this.getComponentName(clusterRoleBinding) }`);
+		logger.info(`Creating clusterRoleBinding [${ this.getComponentName(clusterRoleBinding) }]`);
 		const result = await this.handleConflict(
 			this.rbacAuthorizationV1Api.createClusterRoleBinding(clusterRoleBinding)
 		);
@@ -119,7 +119,7 @@ class KubernetesClient {
 	}
 
 	async createDaemonSet(namespace: k8s.V1Namespace, daemonSet: k8s.V1DaemonSet): Promise<k8s.V1DaemonSet> {
-		logger.info(`Creating daemonSet${ this.getComponentName(daemonSet) }`);
+		logger.info(`Creating daemonSet [${ this.getComponentName(daemonSet) }]`);
 		const namespaceName = this.getComponentName(namespace);
 		const result = await this.handleConflict(
 			this.appsV1Api.createNamespacedDaemonSet(namespaceName, daemonSet)
@@ -128,7 +128,7 @@ class KubernetesClient {
 	}
 
 	async createConfigMap(namespace: k8s.V1Namespace, configMap: k8s.V1ConfigMap): Promise<k8s.V1ConfigMap> {
-		logger.info(`Creating configMap ${ this.getComponentName(configMap) }`);
+		logger.info(`Creating configMap [${ this.getComponentName(configMap) }]`);
 		const namespaceName = this.getComponentName(namespace);
 		const result = await this.handleConflict(
 			this.coreV1Api.createNamespacedConfigMap(namespaceName, configMap)
@@ -137,7 +137,7 @@ class KubernetesClient {
 	}
 
 	async createDeployment(namespace: k8s.V1Namespace, deployment: k8s.V1Deployment): Promise<k8s.V1Deployment> {
-		logger.info(`Creating deployment ${ this.getComponentName(deployment) }`);
+		logger.info(`Creating deployment [${ this.getComponentName(deployment) }]`);
 		const namespaceName = this.getComponentName(namespace);
 		const result = await this.handleConflict(
 			this.appsV1Api.createNamespacedDeployment(namespaceName, deployment)
@@ -146,7 +146,7 @@ class KubernetesClient {
 	}
 
 	async createStorageClass(storageClass: k8s.V1StorageClass): Promise<k8s.V1StorageClass> {
-		logger.info(`Creating storageClass ${ this.getComponentName(storageClass) }`);
+		logger.info(`Creating storageClass [${ this.getComponentName(storageClass) }]`);
 		const result = await this.handleConflict(
 			this.storageV1Api.createStorageClass(storageClass)
 		);
