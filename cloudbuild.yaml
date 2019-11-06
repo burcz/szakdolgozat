@@ -4,7 +4,8 @@ steps:
     id: 'buildApi'
     args:
       - "build"
-      - "--target api"
+      - "--target"
+      - "api"
       - "."
       - "-t"
       - "eu.gcr.io/$PROJECT_ID/api:$TAG_NAME"
@@ -12,7 +13,8 @@ steps:
     id: 'buildFrontend'
     args:
       - "build"
-      - "--target frontend"
+      - "--target"
+      - "frontend"
       - "."
       - "-t"
       - "eu.gcr.io/$PROJECT_ID/frontend:$TAG_NAME"
