@@ -31,4 +31,4 @@ steps:
       - "eu.gcr.io/$PROJECT_ID/frontend:$_TAG_NAME"
     waitFor: ['buildFrontend']
 substitutions:
-  $_TAG_NAME: test
+  _TAG_NAME: test
