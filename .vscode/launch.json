@@ -21,6 +21,7 @@
 			"name": "clusterBuilder",
 			"program": "${workspaceFolder}/src/cluster-builder/index.ts",
 			"runtimeExecutable": "/Users/szabom/.nvm/versions/node/v10.15.3/bin/node",
+			"outputCapture": "std",
 			"preLaunchTask": "tsc: build - tsconfig.json",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"

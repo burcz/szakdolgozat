@@ -100,6 +100,9 @@ class ClusterManagerClient {
 			logger.info(`Cluster still creating... Status: ${ cluster.status }`);
 			cluster = await this.getCluster(config.clusterBuilderOptions.cluster.name);
 		}
+		if (cluster.status === "RUNNING") {
+			logger.info(`Cluster creation finished [${ cluster.name }]`);
+		}
 	}
 
 }

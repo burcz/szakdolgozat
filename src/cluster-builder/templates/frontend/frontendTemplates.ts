@@ -2,90 +2,80 @@ import { V1StatefulSet, V1Namespace, V1Service } from "@kubernetes/client-node";
 
 const namespace: V1Namespace = {
 	metadata: {
-		name: 'api'
+		name: 'frontend'
 	}
 };
 
 const service: V1Service = {
 	metadata: {
-		name: 'api',
+		name: 'frontend',
 		labels: {
-			name: 'api'
+			name: 'frontend'
 		}
 	},
 	spec: {
 		ports: [
 			{
-				port: 3000
+				port: 8080
 			}
 		],
 		clusterIP: 'None',
 		selector: {
-			role: 'api'
+			role: 'frontend'
 		}
 	}
 };
 
 const loadBalancer: V1Service = {
 	metadata: {
-		name: 'api-lb',
+		name: 'frontend-lb',
 		labels: {
-			name: 'api-lb'
+			name: 'frontend-lb'
 		}
 	},
 	spec: {
 		ports: [
 			{
-				port: 3000
+				port: 8080
 			}
 		],
 		type: 'LoadBalancer',
 		selector: {
-			role: 'api'
+			role: 'frontend'
 		}
 	}
 };
 
 const statefulSet: V1StatefulSet = {
 	metadata: {
-		name: "api"
+		name: "frontend"
 	},
 	spec: {
-		serviceName: "api",
+		serviceName: "frontend",
 		replicas: 1,
 		selector: {
 			matchLabels: {
-				role: "api"
+				role: "frontend"
 			}
 		},
 		template: {
 			metadata: {
 				labels: {
-					role: 'api'
+					role: 'frontend'
 				}
 			},
 			spec: {
 				terminationGracePeriodSeconds: 10,
 				nodeSelector: {
-					'cloud.google.com/gke-nodepool': "api"
+					'cloud.google.com/gke-nodepool': "frontend"
 				},
 				containers: [
 					{
-						name: 'api',
-						image: 'eu.gcr.io/cluster-builder-test/api:test',
+						name: 'frontend',
+						image: 'eu.gcr.io/cluster-builder-test/frontend:test',
 						ports: [
 							{
-								containerPort: 3000
-							}
-						],
-						env: [
-							{
-								name: 'DB_HOST',
-								value: `mongo.db.svc.cluster.local`
-							},
-							{
-								name: 'DB_NAME',
-								value: 'test'
+								containerPort: 8080
 							}
 						]
 					}

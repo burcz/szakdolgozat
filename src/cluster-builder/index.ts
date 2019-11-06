@@ -1,4 +1,4 @@
-import { api, database, cluster } from './components';
+import { api, database, cluster, frontend } from './components';
 
 async function main() {
 	try {
@@ -6,7 +6,7 @@ async function main() {
 
 		await database.setup(k8sClient);
 		await api.setup(k8sClient);
-		// await frontend.setup(k8sClient);
+		await frontend.setup(k8sClient);
 
 	}
 	catch (err) {
