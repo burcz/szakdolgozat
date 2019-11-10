@@ -40,6 +40,10 @@ steps:
     - 'statefulsets'
     - 'api=gcr.io/$PROJECT_ID/api:$TAG_NAME'
     - '--all'
+    env:
+    - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=test'
+    - 'CLOUDSDK_CORE_PROJECT=cluster-builder-test'
     waitFor: ['pushApi']
   - name: 'gcr.io/cloud-builders/kubectl'
     id: 'deployFrontend'
@@ -51,4 +55,8 @@ steps:
     - 'statefulsets'
     - 'frontend=gcr.io/$PROJECT_ID/frontend:$TAG_NAME'
     - '--all'
+    env:
+    - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=test'
+    - 'CLOUDSDK_CORE_PROJECT=cluster-builder-test'
     waitFor: ['pushFrontend']
