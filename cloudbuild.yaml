@@ -41,7 +41,7 @@ steps:
     - 'api=gcr.io/$PROJECT_ID/api:$TAG_NAME'
     - '--all'
     waitFor: ['pushApi']
-    - name: 'gcr.io/cloud-builders/kubectl'
+  - name: 'gcr.io/cloud-builders/kubectl'
     id: 'deployFrontend'
     args:
     - '-n'
