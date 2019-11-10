@@ -30,5 +30,27 @@ steps:
       - "push"
       - "eu.gcr.io/$PROJECT_ID/frontend:$_TAG_NAME"
     waitFor: ['buildFrontend']
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'deployApi'
+    args:
+    - '-n'
+    - 'api'
+    - 'set'
+    - 'image'
+    - 'statefulsets'
+    - 'api=gcr.io/$PROJECT_ID/api:$_TAG_NAME'
+    - '--all'
+    waitFor: ['pushApi']
+    - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'deployFrontend'
+    args:
+    - '-n'
+    - 'frontend'
+    - 'set'
+    - 'image'
+    - 'statefulsets'
+    - 'frontend=gcr.io/$PROJECT_ID/frontend:$_TAG_NAME'
+    - '--all'
+    waitFor: ['pushFrontend']
 substitutions:
   _TAG_NAME: test
