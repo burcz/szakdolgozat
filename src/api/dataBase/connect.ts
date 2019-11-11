@@ -11,7 +11,8 @@ export default ({ db }: TInput) => {
 				db,
 				{
 					useNewUrlParser: true,
-					useUnifiedTopology: true
+					useUnifiedTopology: true,
+					useFindAndModify: false
 				}
 			)
 			.then(() => {
