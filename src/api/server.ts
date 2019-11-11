@@ -13,6 +13,8 @@ app.use(function (req, res, next) {
 app.listen(port, () =>
 	console.log(`Application started successfully on port ${ port }.`)
 );
-const db = `mongodb://${ process.env.DB_HOST }:27017/test`;
+const db = process.env.DB_PORT ?
+	`mongodb://${ process.env.DB_HOST }:${ process.env.DB_PORT }/${ process.env.DB_NAME }` :
+	`mongodb://${ process.env.DB_HOST }/${ process.env.DB_NAME }`;
 connect({ db });
 userRoutes({ app });

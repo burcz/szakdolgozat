@@ -2,6 +2,7 @@ import * as container from '@google-cloud/container';
 import { Operation } from 'google-gax';
 import { google } from 'googleapis';
 import { promisify } from 'util';
+import logger from '../../utils/logger';
 
 import * as config from '../../../config.json';
 
@@ -23,6 +24,7 @@ class ClusterManagerClient {
 	}
 
 	async createCluster(request: ClusterRequest): Promise<[Operation]> {
+		logger.info(`Creating cluster [${ request.cluster.name }]`);
 		return await this.client.createCluster(request);
 	}
 
@@ -92,9 +94,14 @@ class ClusterManagerClient {
 
 	async waitForClusterCreation() {
 		let cluster = await this.getCluster(config.clusterBuilderOptions.cluster.name);
+		logger.info(`Waiting for cluster creation [${ cluster.name }]`);
 		while (cluster.status !== "RUNNING") { // TODO: timeout
 			await sleep(5000);
+			logger.info(`Cluster still creating... Status: ${ cluster.status }`);
 			cluster = await this.getCluster(config.clusterBuilderOptions.cluster.name);
+		}
+		if (cluster.status === "RUNNING") {
+			logger.info(`Cluster creation finished [${ cluster.name }]`);
 		}
 	}
 

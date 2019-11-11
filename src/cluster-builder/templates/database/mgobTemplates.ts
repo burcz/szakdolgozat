@@ -10,7 +10,7 @@ scheduler:
   retention: 1
   timeout: 60
 gcloud:
-  bucket: "mgob"
+  bucket: "cluster-builder-test-mgob"
   keyFilePath: /etc/mgob/service-account.json
 `;
 
