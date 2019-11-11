@@ -24,7 +24,7 @@ connect({ db });
 userRoutes({ app });
 noteRoutes({ app });
 
-app.use(function defaultErrorHandler(err, req, res) {
+app.use(function defaultErrorHandler(err, req, res, next) {
 	try {
 		const httpEx = new exceptional.HttpException(err);
 		res.status(httpEx.statusCode).json(httpEx.error);
@@ -32,6 +32,7 @@ app.use(function defaultErrorHandler(err, req, res) {
 	catch (err) {
 		res.status(500).end();
 	}
+	next();
 });
 
 app.listen(port, () =>
