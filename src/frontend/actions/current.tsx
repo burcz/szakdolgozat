@@ -6,17 +6,15 @@ export type AUTHENTICATE = typeof AUTHENTICATE;
 export const UNAUTHENTICATE = 'UNAUTHENTICATE';
 export type UNAUTHENTICATE = typeof UNAUTHENTICATE;
 
-import { ICurrent } from "../types";
-
 export interface IAuthenticate {
 	type: AUTHENTICATE;
-	data: string;
+	data: string | null;
 }
 
 function authenticate(): IAuthenticate {
 	return {
 		type: AUTHENTICATE,
-		data: 'fele'
+		data: window.localStorage.getItem('userId')
 	};
 }
 
@@ -35,6 +33,7 @@ export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 export function logIn() {
 	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
 		window.localStorage.setItem("authenticated", "true");
+		window.localStorage.setItem("userId", "5dc99cd7db8055866d8aa23b"); //TODO remove hardcode
 		dispatch(authenticate());
 	};
 }
@@ -42,6 +41,7 @@ export function logIn() {
 export function logOut() {
 	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
 		window.localStorage.setItem("authenticated", "false");
+		window.localStorage.setItem("userId", "");
 		dispatch(unauthenticate());
 	};
 }

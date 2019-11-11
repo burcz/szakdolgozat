@@ -6,12 +6,8 @@ import { bindActionCreators } from 'redux';
 import Nav from "../components/NavBar";
 import Pages from "../routes/Pages";
 import { checkAuthentication } from "../actions/current";
-import { ICurrent } from "../types";
+import { IReducedStates } from "../types";
 import history from "../history";
-
-import * as config from '../../config.json';
-
-
 
 interface IProps {
 	checkAuthentication: () => void;
@@ -40,15 +36,9 @@ const App = ({
 	);
 }
 
-const mapStateToProps = (state) => (
-	(config.reducer) ? 
-	{ isAuthenticated: state.currentReducer.isAuthenticated } :
-	{ isAuthenticated: state.isAuthenticated }
+const mapStateToProps = (state: IReducedStates) => (
+	{ isAuthenticated: state.currentReducer.isAuthenticated }
 );
-
-// const mapDispatchToProps = {
-// 	checkAuthenticationConnect: checkAuthentication
-// };
 
 function mapDispatchToProps(dispatch) {
 	return {

@@ -21,17 +21,20 @@ export function getUsers() {
 				}
 			})
 			.then(data => {
-				window.localStorage.setItem('users', data);
-				window.localStorage.setItem('isLoading', "false");
 				dispatch({
-					type: GET_USERS_ACTION
+					type: GET_USERS_ACTION,
+					data: {
+						users: data,
+						isLoading: false
+					}
 				})
 			})
 			.catch(error => {
-				window.localStorage.setItem('error', error);
-				window.localStorage.setItem('isLoading', "false");
 				dispatch({
-					type: GET_USERS_ACTION
+					type: GET_USERS_ACTION,
+					data: {
+						error: error
+					}
 				})
 			});
 	};

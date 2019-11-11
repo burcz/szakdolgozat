@@ -4,15 +4,15 @@ import {
 	AUTHENTICATE,
 	UNAUTHENTICATE
 } from "../actions/current";
-import { ICurrent } from "../types";
+import { ICurrentState } from "../types";
 
 export default function currentReducer(
-	state: ICurrent = {
+	state: ICurrentState = {
 		uuid: null,
 		isAuthenticated: null,
 	},
 	action: IAuthenticate | IUnauthenticate,
-): ICurrent {
+): ICurrentState {
 	switch (action.type) {
 		case AUTHENTICATE:
 			return { ...state, uuid: action.data, isAuthenticated: true };

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import history from '../history';
-import { ICurrent } from '../types';
+import { IReducedStates } from '../types';
 
 interface IProps {
 	exact?: boolean;
@@ -19,7 +19,7 @@ const LoggedInRoute = ({
 }: IProps) => {
 	if (isAuthenticated === false) {
 		history.push("/log-in");
-		alert("this is a logged in route, you are logged out, redirected to log in");
+		console.log("this is a logged in route, you are logged out, redirected to log in");
 	}
 
 	return (
@@ -41,8 +41,8 @@ const LoggedInRoute = ({
 	);
 };
 
-const mapStateToProps = (state: ICurrent) => ({
-	isAuthenticated: state.isAuthenticated
+const mapStateToProps = (state: IReducedStates) => ({
+	isAuthenticated: state.currentReducer.isAuthenticated
 });
 
 export default connect(

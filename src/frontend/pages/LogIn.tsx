@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { logIn } from "../../actions/current";
+import { logIn } from "../actions/current";
 
 interface IProps {
 	logInConnect: () => void;

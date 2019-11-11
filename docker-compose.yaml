@@ -20,7 +20,7 @@ services:
       - mongo
     environment:
       - DB_HOST=mongo
-  UI:
+  frontend:
     container_name: frontend
     build:
         context: .
