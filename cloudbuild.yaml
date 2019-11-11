@@ -38,7 +38,7 @@ steps:
     - 'set'
     - 'image'
     - 'statefulsets'
-    - 'api=gcr.io/$PROJECT_ID/api:$TAG_NAME'
+    - 'api=eu.gcr.io/$PROJECT_ID/api:$TAG_NAME'
     - '--all'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
@@ -53,7 +53,7 @@ steps:
     - 'set'
     - 'image'
     - 'statefulsets'
-    - 'frontend=gcr.io/$PROJECT_ID/frontend:$TAG_NAME'
+    - 'frontend=eu.gcr.io/$PROJECT_ID/frontend:$TAG_NAME'
     - '--all'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-a'
