@@ -1,10 +1,12 @@
 import { routerReducer } from 'react-router-redux';
 import userReducer from './userReducer';
-import currentReducer from './current';
+import authReducer from './authReducer';
+import noteReducer from './noteReducer';
 
 const reducers = {
-	'currentReducer': currentReducer,
+	'authReducer': authReducer,
 	'userReducer': userReducer,
+	'noteReducer': noteReducer,
 	'router': routerReducer
 };
 

@@ -1,6 +1,5 @@
 {
 	"dbLocation": "/Users/szabom/mongo/db",
-	"reducer": true,
 	"clusterBuilderOptions": {
 		"googleApplicationCredentials": "/Users/szabom/Tools/saas/gcp/cluster-builder-test/service-accounts/masteradmin.json",
 		"location": "europe-west3-a",

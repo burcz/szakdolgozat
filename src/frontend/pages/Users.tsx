@@ -2,53 +2,55 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import { IUser } from "../types";
+import UsersTable from '../components/UsersTable';
 
 import * as userActions from '../actions/userActions';
 
 interface IProps {
-	getUser: (userId: string) => void;
-	current: {
-		user: IUser;
+	getUsers: () => void;
+	all: {
+		users: IUser[];
 		isLoading: boolean | null;
 		error: Error | null;
 	}
 }
 
-const Home = ({
-	getUser,
-	current
+const Users = ({
+	getUsers,
+	all
 }: IProps) => {
 	React.useEffect(() => {
-		const userId = window.localStorage.getItem("userId");
-		if (userId) {
-			getUser(userId);
-		}
+		getUsers();
 	}, []);
 
-	if (current.error) {
-		return <p>{current.error.message}</p>;
+	if (all.error) {
+		return <p>{all.error.message}</p>;
 	}
-	if (current.isLoading) {
+	if (all.isLoading) {
 		return <p>Loading ...</p>;
 	}
 	return (
-		<p>{JSON.stringify(current.user, null, 2)} </p>
+		<div className="contianer">
+			<div className="table">
+				<UsersTable {...all.users} />
+			</div>
+		</div>
 	);
 }
 
 function mapStateToProps(state) {
 	return {
-		current: state.userReducer.current,
+		all: state.userReducer.all,
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		getUser: bindActionCreators(userActions.getUser, dispatch)
+		getUsers: bindActionCreators(userActions.getUsers, dispatch)
 	};
 }
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Home)
+)(Users)

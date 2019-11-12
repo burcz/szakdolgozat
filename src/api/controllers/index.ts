@@ -1,5 +1,7 @@
 import * as userController from './userController';
+import * as noteController from './noteController';
 
 export {
-	userController
+	userController,
+	noteController
 };

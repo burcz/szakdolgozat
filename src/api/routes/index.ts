@@ -1,5 +1,7 @@
 import userRoutes from './user';
+import noteRoutes from './note';
 
 export {
-	userRoutes
+	userRoutes,
+	noteRoutes
 };

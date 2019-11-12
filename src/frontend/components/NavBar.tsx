@@ -4,12 +4,11 @@ import {
 	NavbarBrand,
 	Nav,
 	NavItem,
-	// NavLink
 } from 'reactstrap';
 import { connect } from "react-redux";
 
 import { NavLink } from "react-router-dom";
-import { ICurrent } from "../types";
+import { IReducedStates } from "../types";
 
 interface IProps {
 	isAuthenticated: boolean | null;
@@ -42,17 +41,17 @@ const NavBar = ({ isAuthenticated, uuid }: IProps) => {
 					Users
 				</NavLink>
 			</NavItem>
+			<NavItem>
+				<NavLink to="/notes">
+					Notes
+				</NavLink>
+			</NavItem>
 		</>
 	) : (
 		<>
 			<NavItem>
 				<NavLink to="/">
 					Landing
-				</NavLink>
-			</NavItem>
-			<NavItem>
-				<NavLink to="/about">
-					About
 				</NavLink>
 			</NavItem>
 		</>
@@ -63,16 +62,6 @@ const NavBar = ({ isAuthenticated, uuid }: IProps) => {
 			<NavbarBrand href="/">Notes by burcz Auth state: {isAuthenticated ? `Logged in user: ${uuid}` : "Logged out"}</NavbarBrand>
 			<Nav className="ml-auto" navbar>
 				{mainLinks}
-				<NavItem>
-					<NavLink to="/terms">
-						Terms
-						</NavLink>
-				</NavItem>
-				<NavItem>
-					<NavLink to="/broken-link">
-						Broken link
-						</NavLink>
-				</NavItem>
 				{logInOut}
 			</Nav>
 		</Navbar>
@@ -80,9 +69,9 @@ const NavBar = ({ isAuthenticated, uuid }: IProps) => {
 
 }
 
-const mapStateToProps = (state: ICurrent) => ({
-	uuid: state.uuid,
-	isAuthenticated: state.isAuthenticated,
+const mapStateToProps = (state: IReducedStates) => ({
+	uuid: state.authReducer.uuid,
+	isAuthenticated: state.authReducer.isAuthenticated,
 });
 
 export default connect(

@@ -20,12 +20,14 @@ services:
       - mongo
     environment:
       - DB_HOST=mongo
-  UI:
+  frontend:
     container_name: frontend
     build:
         context: .
         target: frontend
         dockerfile: Dockerfile
+        args:
+          api_address: http://localhost:3000
     image: frontend:latest
     ports:
       - 8080:8080

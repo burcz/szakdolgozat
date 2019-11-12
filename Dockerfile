@@ -11,12 +11,13 @@ RUN npm install
 
 # === frontend ===
 FROM base as frontend
+ARG api_address
 COPY webpack.config.js .
 ADD src/frontend /usr/app/src/frontend
 ADD public /usr/app/public
 
-RUN node_modules/.bin/tsc -p tsconfig.json
-RUN node_modules/.bin/webpack
+RUN node_modules/.bin/tsc -p tsconfig.json --outDir dist/frontend
+RUN node_modules/.bin/webpack --env.API_ADDRESS=${api_address}
 
 EXPOSE 8080
 CMD [ "node", "dist/frontend/index.js" ]
