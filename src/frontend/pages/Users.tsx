@@ -33,7 +33,6 @@ const Users = ({
 		<div className="contianer">
 			<div className="table">
 				<UsersTable {...all.users} />
-				{/* <p>{JSON.stringify(users, null, 2)} </p> */}
 			</div>
 		</div>
 	);

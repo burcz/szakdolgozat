@@ -33,7 +33,7 @@ export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 export function logIn(userId: string) {
 	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
 		window.localStorage.setItem("authenticated", "true");
-		window.localStorage.setItem("userId", userId); //TODO remove hardcode
+		window.localStorage.setItem("userId", userId);
 		dispatch(authenticate());
 	};
 }
