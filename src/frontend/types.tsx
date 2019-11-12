@@ -5,19 +5,26 @@ export interface ICurrentState {
 }
 
 export interface IUsersState {
-	users: IUser[];
-	isLoading: boolean;
-	error: Error | null;
+	all: {
+		users: IUser[];
+		isLoading: boolean
+		error: Error | null;
+	};
+	current: {
+		user: IUser | null;
+		isLoading: boolean
+		error: Error | null;
+	};
 };
 
 export interface IUser {
+	_id: string;
 	firstName: string;
 	lastName: string;
 	email: string;
 }
 
 export interface INotesState {
-	user: IUser,
 	notes: INote[];
 	isLoading: boolean;
 	error: Error | null;

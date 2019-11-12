@@ -6,11 +6,6 @@ import {
 import { INotesState } from '../types';
 
 const initialState = {
-	user: {
-		firstName: '',
-		lastName: '',
-		email: ''
-	},
 	notes: [],
 	isLoading: true,
 	error: null

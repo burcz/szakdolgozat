@@ -8,31 +8,31 @@ import * as userActions from '../actions/userActions';
 
 interface IProps {
 	getUsers: () => void;
-	users: IUser[];
-	isLoading: boolean | null;
-	error: Error | null;
+	all: {
+		users: IUser[];
+		isLoading: boolean | null;
+		error: Error | null;
+	}
 }
 
 const Users = ({
 	getUsers,
-	users,
-	isLoading,
-	error
+	all
 }: IProps) => {
 	React.useEffect(() => {
 		getUsers();
 	}, []);
 
-	if (error) {
-		return <p>{error.message}</p>;
+	if (all.error) {
+		return <p>{all.error.message}</p>;
 	}
-	if (isLoading) {
+	if (all.isLoading) {
 		return <p>Loading ...</p>;
 	}
 	return (
 		<div className="contianer">
 			<div className="table">
-				<UsersTable {...users} />
+				<UsersTable {...all.users} />
 				{/* <p>{JSON.stringify(users, null, 2)} </p> */}
 			</div>
 		</div>
@@ -41,9 +41,7 @@ const Users = ({
 
 function mapStateToProps(state) {
 	return {
-		users: state.userReducer.users,
-		isLoading: state.userReducer.isLoading,
-		error: state.userReducer.error
+		all: state.userReducer.all,
 	}
 }
 

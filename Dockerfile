@@ -15,7 +15,7 @@ COPY webpack.config.js .
 ADD src/frontend /usr/app/src/frontend
 ADD public /usr/app/public
 
-RUN node_modules/.bin/tsc -p tsconfig.json
+RUN node_modules/.bin/tsc -p tsconfig.json --outDir dist/frontend
 RUN node_modules/.bin/webpack
 
 EXPOSE 8080

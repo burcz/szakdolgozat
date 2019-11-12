@@ -30,10 +30,10 @@ function unauthenticate(): IUnauthenticate {
 
 export type AuthenticationAction = IAuthenticate | IUnauthenticate;
 
-export function logIn() {
+export function logIn(userId: string) {
 	return (dispatch: Dispatch<AuthenticationAction, {}, any>) => {
 		window.localStorage.setItem("authenticated", "true");
-		window.localStorage.setItem("userId", "5dc99cd7db8055866d8aa23b"); //TODO remove hardcode
+		window.localStorage.setItem("userId", userId); //TODO remove hardcode
 		dispatch(authenticate());
 	};
 }
