@@ -1,16 +1,43 @@
-export interface ICurrent {
+import { RouterState } from 'react-router-redux';
+export interface IAuthState {
 	isAuthenticated: boolean | null;
 	uuid: string | null;
 }
 
 export interface IUsersState {
-	users: IUser[];
-	isLoading: boolean;
-	error: Error | null;
+	all: {
+		users: IUser[];
+		isLoading: boolean
+		error: Error | null;
+	};
+	current: {
+		user: IUser | null;
+		isLoading: boolean
+		error: Error | null;
+	};
 };
 
 export interface IUser {
+	_id: string;
 	firstName: string;
 	lastName: string;
 	email: string;
+}
+
+export interface INotesState {
+	notes: INote[];
+	isLoading: boolean;
+	error: Error | null;
+}
+
+export interface INote {
+	userId: string;
+	body: string;
+}
+
+export interface IReducedStates {
+	authReducer: IAuthState;
+	userReducer: IUsersState,
+	noteReducer: INotesState,
+	router: RouterState;
 }

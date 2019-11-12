@@ -1,46 +1,59 @@
-module.exports = {
-    mode: "development",
+const webpack = require('webpack');
 
-    entry: {
-		index: "./src/frontend/pages/index.tsx",
-    },
+module.exports = (env) => {
+	const envKeys = Object.keys(env).reduce((prev, next) => {
+		prev[`process.env.${next}`] = JSON.stringify(env[next]);
+		return prev;
+	}, {});
 
-    output: {
-        filename: "[name].bundle.js",
-        chunkFilename: '[name].chunk.js',
-        path: __dirname + "/dist/views",
-        publicPath: "/assets/"
-    },
+	return {
+		mode: "development",
 
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+		entry: {
+			index: "./src/frontend/pages/index.tsx",
+		},
 
-    resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js"]
-    },
+		output: {
+			filename: "[name].bundle.js",
+			chunkFilename: '[name].chunk.js',
+			path: __dirname + "/dist/views",
+			publicPath: "/assets/"
+		},
 
-    module: {
-        rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            {
-                test: /\.tsx?$/,
-                loader: "ts-loader",
-            },
+		// Enable sourcemaps for debugging webpack's output.
+		devtool: "source-map",
 
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            {enforce: "pre", test: /\.js$/, loader: "source-map-loader"},
-            {
-                test: /\.css$/,
-                use: [{loader: "style-loader"}, {loader: "css-loader"}]
-            },
-        ]
-    },
+		resolve: {
+			// Add '.ts' and '.tsx' as resolvable extensions.
+			extensions: [".ts", ".tsx", ".js"]
+		},
 
-    optimization: {
-        splitChunks: {
-            chunks: "all"
-        },
-        usedExports: true
-    },
+		module: {
+			rules: [
+				// All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
+				{
+					test: /\.tsx?$/,
+					loader: "ts-loader",
+				},
+
+				// All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+				{enforce: "pre", test: /\.js$/, loader: "source-map-loader"},
+				{
+					test: /\.css$/,
+					use: [{loader: "style-loader"}, {loader: "css-loader"}]
+				},
+			]
+		},
+
+		optimization: {
+			splitChunks: {
+				chunks: "all"
+			},
+			usedExports: true
+		},
+		plugins: [
+			// add the plugin to your plugins array
+			new webpack.DefinePlugin(envKeys)
+		]
+	};
 };
