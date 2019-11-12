@@ -16,7 +16,7 @@ steps:
       - "--target"
       - "frontend"
       - "--build-arg"
-      - "api_address=http://api.api.svc.cluster.local:3000"
+      - "api_address=http://34.89.232.207:3000"
       - "."
       - "-t"
       - "eu.gcr.io/$PROJECT_ID/frontend:$TAG_NAME"
