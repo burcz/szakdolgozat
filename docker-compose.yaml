@@ -26,6 +26,8 @@ services:
         context: .
         target: frontend
         dockerfile: Dockerfile
+        args:
+          api_address: http://localhost:3000
     image: frontend:latest
     ports:
       - 8080:8080

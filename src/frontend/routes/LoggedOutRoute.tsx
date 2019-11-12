@@ -42,7 +42,7 @@ const LoggedOutRoute = ({
 };
 
 const mapStateToProps = (state: IReducedStates) => ({
-	isAuthenticated: state.currentReducer.isAuthenticated
+	isAuthenticated: state.authReducer.isAuthenticated
 });
 
 export default connect(

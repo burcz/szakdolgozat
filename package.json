@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "toc": "node_modules/.bin/markdown-toc -i README.md",
     "build": "node_modules/.bin/gulp buildTs && webpack",
-    "build:frontend": "webpack",
+    "build:frontend": "webpack --env.API_ADDRESS=http://localhost:3000",
     "lint": "./node_modules/.bin/eslint . --ext .ts",
     "precommit": "lint-staged",
     "start": "docker-compose up --build"

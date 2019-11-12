@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import Nav from "../components/NavBar";
 import Pages from "../routes/Pages";
-import { checkAuthentication } from "../actions/current";
+import { checkAuthentication } from "../actions/authActions";
 import { IReducedStates } from "../types";
 import history from "../history";
 
@@ -37,7 +37,7 @@ const App = ({
 }
 
 const mapStateToProps = (state: IReducedStates) => (
-	{ isAuthenticated: state.currentReducer.isAuthenticated }
+	{ isAuthenticated: state.authReducer.isAuthenticated }
 );
 
 function mapDispatchToProps(dispatch) {

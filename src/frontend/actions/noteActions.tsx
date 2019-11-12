@@ -13,9 +13,11 @@ export interface IGeUserNotesAction {
 	data: INotesState;
 }
 
+const apiAddress = process.env.API_ADDRESS;
+
 export function getNotesForUser(userId: string) {
 	return (dispatch: Dispatch<IGeUserNotesAction, {}, any>) => {
-		axios.default.get('http://localhost:3000/api/user/' + userId + '/notes')
+		axios.default.get(apiAddress + '/api/user/' + userId + '/notes')
 		.then(response => {
 			if (response.status === 200) {
 				return response.data;
@@ -45,7 +47,7 @@ export function getNotesForUser(userId: string) {
 
 export function createNote(userId: string, noteBody: string) {
 	return (dispatch: Dispatch<IGeUserNotesAction, {}, any>) => {
-		axios.default.post('http://localhost:3000/api/note', {
+		axios.default.post(apiAddress + '/api/note', {
 			userId: userId,
 			body: noteBody
 		})

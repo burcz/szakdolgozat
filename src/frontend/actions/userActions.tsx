@@ -18,9 +18,11 @@ export interface IGetOneUserAction {
 	data: IUsersState;
 }
 
+const apiAddress = process.env.API_ADDRESS;
+
 export function getUsers() {
 	return (dispatch: Dispatch<IGetUsersAction, {}, any>) => {
-		axios.default.get('http://localhost:3000/api/users')
+		axios.default.get(apiAddress + '/api/users')
 			.then(response => {
 				if (response.status === 200) {
 					return response.data;
@@ -54,7 +56,7 @@ export function getUsers() {
 
 export function getUser(userId: string) {
 	return (dispatch: Dispatch<IGetUsersAction, {}, any>) => {
-		axios.default.get('http://localhost:3000/api/user/' + userId)
+		axios.default.get(apiAddress + '/api/user/' + userId)
 			.then(response => {
 				if (response.status === 200) {
 					return response.data;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { logOut } from "../actions/current";
+import { logOut } from "../actions/authActions";
 
 interface IProps {
 	logOutConnect: () => void;

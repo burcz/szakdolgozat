@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-import { logIn } from "../actions/current";
+import { logIn } from "../actions/authActions";
 
 interface IProps {
 	logIn: (id: string) => void;

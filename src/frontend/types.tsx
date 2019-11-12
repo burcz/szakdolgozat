@@ -1,5 +1,5 @@
 import { RouterState } from 'react-router-redux';
-export interface ICurrentState {
+export interface IAuthState {
 	isAuthenticated: boolean | null;
 	uuid: string | null;
 }
@@ -36,7 +36,7 @@ export interface INote {
 }
 
 export interface IReducedStates {
-	currentReducer: ICurrentState;
+	authReducer: IAuthState;
 	userReducer: IUsersState,
 	noteReducer: INotesState,
 	router: RouterState;

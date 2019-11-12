@@ -71,8 +71,8 @@ const NavBar = ({ isAuthenticated, uuid }: IProps) => {
 }
 
 const mapStateToProps = (state: IReducedStates) => ({
-	uuid: state.currentReducer.uuid,
-	isAuthenticated: state.currentReducer.isAuthenticated,
+	uuid: state.authReducer.uuid,
+	isAuthenticated: state.authReducer.isAuthenticated,
 });
 
 export default connect(
